@@ -261,5 +261,14 @@ fun main() {
         "supported_items" to "#enchantable/foot_armor",
         "weight" to 2
     ).write().println()
+    uziList(
+        1, 2, 3,
+        uziList(
+            1,2,3
+        ),
+        uziList(
+            1,2,3
+        )
+    ).write().println()
     println("END")
 }

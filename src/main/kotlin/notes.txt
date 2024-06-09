@@ -8,4 +8,5 @@ To-do:
 + Maps
 + Maps in maps
 + Map/loop recursion
-- Comments
++ Comments
+- Try to make code more pretty (turn Pair into Map.Entry I don't want repeat & confusing code.)

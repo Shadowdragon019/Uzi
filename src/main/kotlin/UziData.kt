@@ -34,6 +34,8 @@ class UziData<T : Any>(var comment: String, val data: T) {
 
 	private fun makeTabs(tabCount: Int): String = "\t".repeat(tabCount)
 
+	private fun formatComment(tabCount: Int, comment: String): String = if (comment == "") "" else "${makeTabs(tabCount)}# ${formatString(comment, ParentType.comment)}\n"
+
 	private fun isListOrMap(obj: Any?): Boolean =
 		obj is List<*> && obj.isNotEmpty() ||
 		obj is Map<*, *> && obj.isNotEmpty()
@@ -47,7 +49,7 @@ class UziData<T : Any>(var comment: String, val data: T) {
 		' ' in string ||
 		'\n' in string ||
 		'\t' in string ||
-		parentType in listOf(ParentType.line, ParentType.key, ParentType.list) && string[0] == '#')
+		parentType in listOf(ParentType.line, ParentType.key) && string[0] == '#')
 		"\"$string\""
 	else
 		string
@@ -74,17 +76,18 @@ class UziData<T : Any>(var comment: String, val data: T) {
 			throw Error("value was not UziData. Was ${value!!::class}")
 
 	private fun write(tabCount: Int, parentType: ParentType): String =
-		(if (parentType == ParentType.line) makeTabs(tabCount) else "") +
+		(if (parentType == ParentType.line) formatComment(tabCount, comment) + makeTabs(tabCount) else "") +
 		when (data) {
 			is Boolean -> data
 			is Int -> data
 			is Double -> data
 			is String -> formatString(data, parentType)
-			is List<*> -> if (data.isEmpty()) "emptyArray" else
+			is List<*> -> if (data.isEmpty()) "emptyList" else
 				data.foldIndexed("") { index, accumulator, element ->
 					@Suppress("NAME_SHADOWING")
 					val element = requireUziData(element)
 					accumulator +
+					formatComment(tabCount, comment) +
 					makeTabs(tabCount) +
 					'-' +
 					(if (isListOrMap(element.data)) '\n' else ' ') +
@@ -98,6 +101,7 @@ class UziData<T : Any>(var comment: String, val data: T) {
 					@Suppress("NAME_SHADOWING")
 					val value = validValue(value)
 					accumulator +
+					formatComment(tabCount, comment) +
 					makeTabs(tabCount) +
 					key +
 					(if (isListOrMap(value.data)) '\n' else ' ') +
