@@ -1,71 +1,11 @@
 Notes:
 - Don't add limits (ie, must be from 0-100)
 
-I need to write down how I want the language to work more. I need to do this as I'm confused about what should/shouldn't be added/what is/isn't valid.
-Probably in Obsidian
-
 To-do:
-
-Writing:
-    ~emptyMap
-    ~emptyList
-	Comments #
-	    ~Lists
-	    Lists in lists
-	    Map
-	    Maps in maps
-	    List & map recursion
-	~Maps
-	    ~Lists in maps
-	    ~Maps in lists
-	    ~Many maps in lists & lists in maps
-	~Lists
-	~Ints
-	~Doubles
-	~Strings
-        ~Explicit/multiline strings ("")
-                ~Multiline
-                ~Ints
-                ~Double
-                ~Bools
-                ~emptyList
-                ~emptyMap
-                ~Whitespace ie "    Yo    "
-                ~Colons
-                ~#
-	~Booleans
-Reading:
-	Comments #
-	Maps
-	Lists
-	Ints
-	Doubles
-	Strings
-	Booleans
-	Explicit/multiline strings ("")
-	Empty list (emptyList)
-	Empty map (emptyMap)
-
-
-
-- 1
-[
-    1
-]
--
-    - 1
-[
-    [
-        1
-    ]
-]
--
-    -
-        - 1
-[
-    [
-        [
-            1
-        ]
-    ]
-]
++ Strings
++ Lists
++ Lists in lists
++ Maps
++ Maps in maps
++ Map/loop recursion
+- Comments
